@@ -1,0 +1,11 @@
+./find-results/
+*.wav
+*.mp3
+*.flac
+*.m4a
+*.ogg
+*.aiff
+*.aif
+*.wma
+*.aac
+find-audio.yml
