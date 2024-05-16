@@ -3,7 +3,7 @@ require 'fileutils'
 require 'yaml'
 
 HERE = File.dirname(__FILE__)
-CONFIG_PATH = File.absolute_path(File.join(HERE, './find-audio.yml'))
+CONFIG_PATH = File.absolute_path(File.join(HERE, './config.yml'))
 config = {}
 if File.exists?(CONFIG_PATH)
 	config = YAML.load(File.read(CONFIG_PATH))

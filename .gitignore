@@ -8,4 +8,4 @@
 *.aif
 *.wma
 *.aac
-find-audio.yml
+config.yml
