@@ -33,6 +33,10 @@ OptionParser.new do |opts|
 		options[:folder] = v
 	end
 
+	opts.on("-d", "--dry", "Don't copy anything") do |v|
+		options[:dry] = v
+	end
+
 	opts.on("-h", "--help", "Prints this help") do
 		puts opts
 		exit
@@ -126,7 +130,11 @@ paths.each do |path|
 			result_path = File.join(full_output_folder, new_filename)
 			inx += 1
 		end
-		FileUtils.cp(path, result_path)
+		if options[:dry]
+			puts "[DRY] #{path} => #{result_path}"
+		else
+			FileUtils.cp(path, result_path)
+		end
 	rescue => e
 	    puts "Ignoring: #{path} Error: #{e.message}" 
 	end
