@@ -1,0 +1,55 @@
+ruby find-audio.rb -s "gun,pistol,revolver,reload,shot,shoot,bullet,ricochet,shotgun" -n "guns"
+
+ruby find-audio.rb -s "body,gore,blood,flesh,death,kill,bite" -n "gore"
+
+ruby find-audio.rb -s "slash,cut,sword,weapon,claw,pierce,stab,knife,katana,blade,spear,machete,scythe,dagger" -n "claw"
+
+ruby find-audio.rb -s "fire,flame,burn,heat,flare,torch,pyre" -n "fire"
+
+ruby find-audio.rb -s "monster,alien,creature,being,mutant,mutat,ogre,golem,goblin,fairy,humanoid,undead,beast,zombie,ghost,dragon,lizard,yokai,bear,tiger,animal,bug,insect,spider,arach,scorpion,beetle,tarantula,snake,serpent,cobra,aligator,crocodile,cricket,wolf,carnivore,predator,shark,grasshopper,eagle,bird" -n "monster"
+
+ruby find-audio.rb -s "eye,glare,laser,look,hypno,lens,retina,glare,shine,light,bright,stare,glow,beam,sparkle,radiant,radiat,reflect,mirror" -n "eye"
+
+ruby find-audio.rb -s "horror,terror,haunt,scary,fear" -n "horror"
+
+ruby find-audio.rb -s "monk,temple,medita,wisper,pray,worship,preach,relig,church,invok,invoc,shinto" -n "religious"
+
+ruby find-audio.rb -s "ninja,samurai,japan,jutsu,katana,kanji" -n "ninja"
+
+ruby find-audio.rb -s "voice,male,man,warrior" -n "male-voice"
+
+ruby find-audio.rb -s "bull,cow,bison,horse,horn,goat,buffalo" -n "bull"
+
+
+ruby find-audio.rb -s "girl,kid" -n "girl"
+
+ruby find-audio.rb -s "foot,step,feet,walk" -n "footsteps"
+
+ruby find-audio.rb -s "heart" -n "heart"
+
+ruby find-audio.rb -s "impact,hit,crush,crack,break,wound,stab,cut" -n "impact"
+
+ruby find-audio.rb -s "dash,whoosh,whosh,woosh,wosh,swing" -n "swing"
+
+ruby find-audio.rb -s "summon,spawn,invoke,sacrif,conjure,supernatural,exorci,possess,voodoo,vodoo,voodo,christ,ritual,ancient,dark,shadow,crucifix" -n "darkmagic"
+
+ruby find-audio.rb -s "ghost,spirit,soul,angel,whisp,polterg,spectr,haunt,zeitg" -n "ghost"
+
+ruby find-audio.rb -s "witch,fairy,shaman,incantat,necro,enchant,wicca,wizard,sorcer" -n "witch"
+
+ruby find-audio.rb -s "scream,cry,yell,howl,weep" -n "scream"
+
+ruby find-audio.rb -s "ninja,samurai,japan,jutsu,katana,kanji,asia,china,orient" -n "_musicOriental"
+
+ruby find-audio.rb -s "rock,metal,riff,guitar" -n "_musicRock"
+
+
+ruby find-audio.rb -s "rock,metal,riff,guitar" -n "rocksfx"
+
+ruby find-audio.rb -s "jingle,stinger" -n "_jingle"
+
+
+ruby find-audio.rb -s "buff,heal,curse,regen,protect,recover" -n "buff"
+
+
+ruby find-audio.rb -s "buff,heal,curse,regen,protect,recover,spell,aura,enchan,magic,shield,skill,barrier" -z "loop" -n "spell-loop"

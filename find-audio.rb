@@ -17,6 +17,10 @@ OptionParser.new do |opts|
 		options[:symbols] = v
 	end
 
+	opts.on("-zSYMBOLS2", "--symbols2=SYMBOLS2", "Second symbols check (and)") do |v|
+		options[:symbols2] = v
+	end
+
 	opts.on("-wWORDS", "--words=WORDS", "Words to search") do |v|
 		options[:full_words] = v
 	end
@@ -49,10 +53,12 @@ def split_folders(text)
 end
 
 def split_symbols(text)
+	return [] if text.nil?
 	text.split(',').map{|s| s.strip.downcase.gsub(/\s+/, ' ')}.uniq
 end
 
 def parse_symbols(text)
+	return [] if text.nil?
 	blank_pattern = '[-\s_]*'
 	split_symbols(text).map{|s| s.gsub(' ', blank_pattern)}
 end
@@ -60,6 +66,7 @@ end
 def generate_pattern_for(options)
 	full_words = parse_symbols(options[:full_words]).map{|w| "(^|[^a-z])#{w}($|[^a-z])"}
 	symbols = parse_symbols(options[:symbols])
+	return nil if full_words.empty? && symbols.empty?
 	pattern = [*full_words, *symbols].join('|')
 	return "(#{pattern})"
 end
@@ -73,15 +80,17 @@ end
 
 options[:full_words] ||= ''
 options[:symbols] ||= ''
+options[:symbols2] ||= ''
 folders = split_folders(options[:folders]) || config['folders'] || ['.']
 options[:output_folder] ||= './find-results/'
 options[:name] ||= generate_name_for(options)
 
 
 pattern = generate_pattern_for(options)
+pattern2 = generate_pattern_for({symbols: options[:symbols2]})
 full_output_folder = File.join(options[:output_folder], options[:name])
 puts "Options: #{options.inspect}"
-puts "Searching for #{pattern.inspect}"
+puts "Searching for #{pattern.inspect} AND #{pattern2.inspect}"
 
 raw_paths = folders.flat_map do |folder|
 	folder_pattern = File.join(folder, "**/*.{wav,mp3,flac,m4a,ogg,aiff,aif,wma,aac}")
@@ -90,9 +99,17 @@ raw_paths = folders.flat_map do |folder|
 end
 puts "All files Count: #{raw_paths.size}"
 
-paths = raw_paths.find_all{|path| path.match(/#{pattern}/i)}.map{|path| File.absolute_path(path)}.compact.uniq
+paths = raw_paths
+	.find_all{|path| path.match(/#{pattern}/i) && (pattern2.nil? || path.match(/#{pattern2}/i))}
+	.map{|path| File.absolute_path(path)}
+	.compact.uniq
 puts "Files found: #{paths.size}"
 #`vlc #{paths.map{|path| '"' + path + '"'}.join(" ")}`
+
+if paths.size >= 10000
+	puts "This filter selected too many files, ABORTING..."
+	exit
+end
 
 FileUtils.mkdir_p(full_output_folder)
 
